@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Homework 4 List
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <ion-list>
+    <ion-list-header>
+      Neutral Colors
+    </ion-list-header>
+    <ion-item-sliding *ngFor="let item of items">
+      <ion-item>{{ item.name }}</ion-item>
+  </ion-item-sliding>
+  </ion-list>
+</ion-content>
