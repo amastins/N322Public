@@ -1,0 +1,21 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Color shades & Codes
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-list *ngFor="let displayList of displayLists">
+
+    <ion-list-header>
+      {{displayList.title}}
+    </ion-list-header>
+
+    <button clear ion-item *ngFor="let displayListShade of displayList.shades" (click)="itemClicked(displayListShade)">
+      {{displayListShade.shadeName}}
+    </button>
+
+  </ion-list>
+</ion-content>
