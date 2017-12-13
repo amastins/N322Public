@@ -1,0 +1,94 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Event Ideas</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <div padding>
+        <ion-segment [(ngModel)]="act">
+            <ion-segment-button value="free">
+                FREE
+            </ion-segment-button>
+            <ion-segment-button value="under">
+                Under $10/person
+            </ion-segment-button>
+            <ion-segment-button value="over">
+                Over $10/person
+            </ion-segment-button>
+        </ion-segment>
+    </div>
+
+    <div padding>
+        <h3>Make a selection to filter your desired idea results.</h3>
+    </div>
+
+    <div [ngSwitch]="act">
+        <ion-list *ngSwitchCase="'free'">
+            <ion-item-sliding *ngFor="let free of freeIdeas | async">
+                <ion-item>
+                    <ion-thumbnail item-start>
+                        <img src="{{free.img}}" style="height: 150px; width: 200px; border-radius: 10px;">
+                    </ion-thumbnail>
+                    <h3>{{free.desc}}</h3>
+                </ion-item>
+                <ion-item-options>
+                    <button ion-button icon-only color="light" (click)="renameFreeIdea(free)">
+                        <ion-icon name="clipboard"> Edit</ion-icon>
+                    </button>
+                    <button ion-button icon-only color="danger" (click)="deleteFreeIdea(free.id)">
+                        <ion-icon name="trash"> Delete</ion-icon>
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'under'">
+            <ion-item-sliding *ngFor="let under of underIdeas | async">
+                <ion-item>
+                    <ion-thumbnail item-start>
+                        <img src="{{under.img}}" style="width: 200px; height: 150px; border-radius: 10px;">
+                    </ion-thumbnail>
+                    <h3>{{under.desc}}</h3>
+                </ion-item>
+                <ion-item-options>
+                    <button ion-button icon-only color="light" (click)="renameUnderIdea(under)">
+                        <ion-icon name="clipboard"> Edit</ion-icon>
+                    </button>
+                    <button ion-button icon-only color="danger" (click)="deleteUnderIdea(under.id)">
+                        <ion-icon name="trash"> Delete</ion-icon>
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+
+        </ion-list>
+
+        <ion-list *ngSwitchCase="'over'">
+            <ion-item-sliding *ngFor="let over of overIdeas | async">
+                <ion-item>
+                    <ion-thumbnail item-start>
+                        <img src="{{over.img}}" style="height: 150px; width: 200px; border-radius: 10px;">
+                    </ion-thumbnail>
+                    <h3>{{over.desc}}</h3>
+                </ion-item>
+                <ion-item-options>
+                    <button ion-button icon-only color="light" (click)="renameOverIdea(over)">
+                        <ion-icon name="clipboard"> Edit</ion-icon>
+                    </button>
+                    <button ion-button icon-only color="danger" (click)="deleteOverIdea(over.id)">
+                        <ion-icon name="trash"> Delete</ion-icon>
+                    </button>
+                </ion-item-options>
+            </ion-item-sliding>
+        </ion-list>
+
+    </div>
+
+</ion-content>
+
+<ion-footer style="display: flex; align-items: center; justify-content: center; bottom: 0;">
+    <p>© PlansWithFriends 2017</p>
+</ion-footer>
